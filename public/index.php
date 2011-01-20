@@ -53,7 +53,13 @@ if (! defined('APPLICATION_ENV'))
 if(! defined('WRITABLE_FOLDERS'))
   define('WRITABLE_FOLDERS', implode(':', array(
     ROOT_PATH . '/.zfcache',
-    PUBLIC_PATH . '/img/generated/',
+    PUBLIC_PATH . '/img/g/',
+    PUBLIC_PATH . '/uploads',
+  )));
+
+if(! defined('WRITABLE_FILES'))
+  define('WRITABLE_FILES', implode(':', array(
+    ROOT_PATH . '/temp/logs/mail.log',
   )));
 
 // Set include path
@@ -76,6 +82,10 @@ if (! file_exists(APPLICATION_PATH . '/configs/application.ini'))
 foreach(explode(':', WRITABLE_FOLDERS) as $folder) {
   if (! (is_dir($folder) && is_writable($folder)))
     die("The folder ${folder} is not writable or does not exist.");
+}
+foreach(explode(':', WRITABLE_FILES) as $file) {
+  if (! (is_file($file) && is_writable($file)))
+    die("The file ${file} is not writable or does not exist.");
 }
 
 

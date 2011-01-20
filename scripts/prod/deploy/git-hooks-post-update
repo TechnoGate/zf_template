@@ -167,12 +167,15 @@ function die()
 #
 #
 
+# Project name
+PROJECT_NAME="project"
+
 # Define the lock file
-LOCK_FILE="/tmp/technogate-deploy.lock"
+LOCK_FILE="/tmp/${PROJECT_NAME}-deploy.lock"
 
 # Define the project path
-ROOT_PATH="/var/www/project"
-TECHNOGATE_TEST_PATH="/tmp/project"
+ROOT_PATH="/var/www/${PROJECT_NAME}"
+TECHNOGATE_TEST_PATH="/var/tmp/${PROJECT_NAME}_test"
 
 # Define the name/email of the committer of the prune message.
 FULLNAME="Wael Nasreddine"
@@ -270,7 +273,7 @@ if [ ! -d "${TECHNOGATE_TEST_PATH}" ]; then
 #                   testing
 #                   staging
 #
-SetEnv APPLICATION_ENV production
+SetEnv APPLICATION_ENV testing
 
 ####
 # Rewrite
@@ -298,47 +301,78 @@ EOF
 [production]
 phpSettings.display_startup_errors = 0
 phpSettings.display_errors = 0
-resources.frontController.throwerrors = 0
+
 includePaths.library = ROOT_PATH "/library"
-resources.modulesetup[] =
-resources.modules[] =
+
 bootstrap.path = APPLICATION_PATH "/Bootstrap.php"
 bootstrap.class = "Bootstrap"
+
+autoloadernamespaces.0 = Technogate
+autoloadernamespaces.1 = ActiveRecord
+
+pluginPaths.Technogate_Application_Resource = "Technogate/Application/Resource"
+pluginPaths.ZendX_Activerecord_Application_Resource= "ZendX/Activerecord/Application/Resource"
+pluginPaths.Technogate_Application_Resource = "Technogate/Application/Resource"
+
+resources.modulesetup[] =
+resources.modules[] =
+
+resources.frontController.throwerrors = 0
+
 resources.frontController.controllerdirectory = APPLICATION_PATH "/controllers"
 resources.frontController.params.prefixDefaultModule = false
 resources.frontController.moduledirectory = APPLICATION_PATH "/modules"
 resources.frontController.defaultModule = "default"
 resources.frontController.plugins.moduleloader = Technogate_Controller_Plugin_ModuleLoader
 resources.frontController.plugins.layoutloader = Technogate_Controller_Plugin_RequestedModuleLayoutLoader
+
 resources.layout.layout = "layout"
 resources.layout.layoutpath = APPLICATION_PATH "/modules/default/layouts"
-resources.db.adapter = PDO_MYSQL
-resources.db.params.host = localhost
-resources.db.params.username = ${MYSQL_TEST_USER}
-resources.db.params.password = ${MYSQL_TEST_PASS}
-resources.db.params.dbname = ${MYSQL_TEST_DB}
-resources.db.isDefaultTableAdapter = true
+
 resources.translate.adapter = gettext
 resources.translate.data = ROOT_PATH "/data/locales"
 resources.translate.options.scan = directory
-resources.translate.locale = fr_FR
-pluginPaths.Technogate_Application_Resource = "Technogate/Application/Resource"
+resources.translate.locale = en
+
+resources.activerecord.default_connection = production
+resources.activerecord.model_directory = APPLICATION_PATH "/models"
+
+resources.activerecord.connections.production.dsn.adapter = mysql
+resources.activerecord.connections.production.dsn.user =
+resources.activerecord.connections.production.dsn.pass =
+resources.activerecord.connections.production.dsn.hostspec = localhost
+resources.activerecord.connections.production.dsn.database =
+resources.activerecord.connections.production.dsn.options.charset = utf8
+
 fontPath = ROOT_PATH "/data/fonts"
 captcha.font = "Arial.ttf"
+
 app.domain = .example.com
 app.uploadpath = ROOT_PATH "/public/uploads/"
 app.uploadurl = /uploads/
-app.host = alpha.example.com
+app.host = www.example.com
 app.domain = .example.com
 app.cookieDomain = .example.com
 app.googleMapsApiKey =
-facebook.apiKey =
-app.path=.
 app.version = 0.1
-app.title = Notre Projet
+app.title = Template
+app.logo = img/logo.png
+app.facebook.apikey =
+
+app.models.mail.smtp.0.host = localhost
+app.models.mail.smtp.0.params.auth = login
+app.models.mail.smtp.0.params.username =
+app.models.mail.smtp.0.params.password =
+app.models.mail.smtp.0.params.ssl =
+app.models.mail.smtp.0.params.port =
+app.models.mail.from.name = Template
+app.models.mail.from.email = template@example.com
+app.models.mail.bcc.email = template@example.com
+app.models.mail.charset = utf-8
+
+app.models.security.secret_token = c5a15206e7983bb53900944e695e250eeca7d77bd38e235fad596b066b3d53021f313e38d62c4a4229678c127ff32fe346ebfa8010e98ddcea42a82e97cb5151
 
 [production-scripts : production]
-app.path=..
 
 [staging : production]
 phpSettings.display_startup_errors = 1
@@ -346,13 +380,20 @@ phpSettings.display_errors = 1
 resources.frontController.throwerrors = 1
 
 [testing : staging]
-app.domain = .example.com
+resources.activerecord.connections.testing.dsn.adapter = mysql
+resources.activerecord.connections.testing.dsn.user = ${MYSQL_TEST_USER}
+resources.activerecord.connections.testing.dsn.pass = ${MYSQL_TEST_PASS}
+resources.activerecord.connections.testing.dsn.hostspec = localhost
+resources.activerecord.connections.testing.dsn.database = ${MYSQL_TEST_DB}
+resources.activerecord.default_connection = testing
 
 [development : testing]
-app.host = localhost
-app.cookieDomain =
-app.googleMapsApiKey =
-facebook.apiKey =
+resources.activerecord.connections.development.dsn.adapter = mysql
+resources.activerecord.connections.development.dsn.user =
+resources.activerecord.connections.development.dsn.pass =
+resources.activerecord.connections.development.dsn.hostspec = localhost
+resources.activerecord.connections.development.dsn.database =
+resources.activerecord.default_connection = development
 EOF
 else
 	if [ ! -d "${TECHNOGATE_TEST_PATH}/.git" ]; then
@@ -401,20 +442,23 @@ git submodule update --init
 
 # Make sure permissions are ok
 print_info 0 ">>> Making sure permissions are correct"
-mkdir -p "${TECHNOGATE_TEST_PATH}/cache"
-chmod 777 "${TECHNOGATE_TEST_PATH}/cache"
-mkdir -p ${TECHNOGATE_TEST_PATH}/public/uploads{,/default,/fr_FR{,/default},/en_EN{,/default}}
-chmod 777 ${TECHNOGATE_TEST_PATH}/public/uploads{,/default,/fr_FR{,/default},/en_EN{,/default}}
-mkdir -p ${TECHNOGATE_TEST_PATH}/public/img/{captcha,generated,stats}
-chmod 777 ${TECHNOGATE_TEST_PATH}/public/img/{captcha,generated,stats}
+mkdir -p "${TECHNOGATE_TEST_PATH}/.zfcache"
+chmod 777 "${TECHNOGATE_TEST_PATH}/.zfcache"
+mkdir -p ${TECHNOGATE_TEST_PATH}/public/uploads
+chmod 777 ${TECHNOGATE_TEST_PATH}/public/uploads
+mkdir -p ${TECHNOGATE_TEST_PATH}/public/img/g
+chmod 777 ${TECHNOGATE_TEST_PATH}/public/img/g
+mkdir -p ${ROOT_PATH}/temp/logs
+chmod 777 ${ROOT_PATH}/temp/logs
 
 # Force Zend to re-cache
 print_info 0 ">>> Removing cached zend files."
-rm -f ${TECHNOGATE_TEST_PATH}/cache/*
+rm -f ${TECHNOGATE_TEST_PATH}/.zfcache/*
 
 # Empty the mail log file
 print_info 0 "Empty the log of mails"
 echo -n '' > ${TECHNOGATE_TEST_PATH}/temp/logs/mail.log
+chmod a+w ${TECHNOGATE_TEST_PATH}/temp/logs/mail.log
 
 #}}}
 # Update the database {{{
@@ -538,10 +582,10 @@ git submodule update --init
 print_info 0 ">>> Making sure permissions are correct"
 mkdir -p "${ROOT_PATH}/.zfcache"
 chmod 777 "${ROOT_PATH}/.zfcache"
-mkdir -p ${ROOT_PATH}/public/uploads{,/default,/fr_FR{,/default},/en_EN{,/default}}
-chmod 777 ${ROOT_PATH}/public/uploads{,/default,/fr_FR{,/default},/en_EN{,/default}}
-mkdir -p ${ROOT_PATH}/public/img/{captcha,generated,stats}
-chmod 777 ${ROOT_PATH}/public/img/{captcha,generated,stats}
+mkdir -p ${ROOT_PATH}/public/uploads
+chmod 777 ${ROOT_PATH}/public/uploads
+mkdir -p ${ROOT_PATH}/public/img/g
+chmod 777 ${ROOT_PATH}/public/img/g
 mkdir -p ${ROOT_PATH}/temp/logs
 chmod 777 ${ROOT_PATH}/temp/logs
 

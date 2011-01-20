@@ -55,8 +55,8 @@ class Technogate_Form extends Zend_Form {
         'wordLen' => 6,
         'timeout' => 300,
         'font' => $fontPath . DIRECTORY_SEPARATOR . $font,
-        'imgDir' => ROOT_PATH . '/public/img/captcha',
-        'imgUrl' => $frontController->getBaseUrl() . '/img/captcha/' )
+        'imgDir' => ROOT_PATH . '/public/img/g',
+        'imgUrl' => $frontController->getBaseUrl() . '/img/g/' )
       ));
 
     return $captcha;

@@ -88,7 +88,6 @@ foreach(explode(':', WRITABLE_FILES) as $file) {
     die("The file ${file} is not writable or does not exist.");
 }
 
-
 /** Common Function */
 require_once 'Technogate/Common.php';
 

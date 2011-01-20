@@ -83,9 +83,9 @@ abstract class Technogate_Controller_Action extends Zend_Controller_Action {
   /**
    * Accessor to set $_dbAdapter
    *
-   * @param Zend_Db_Adapter_Abstract $db
+   * @param $db
    */
-  public function setDbAdapter(Zend_Db_Adapter_Abstract $db) {
+  public function setDbAdapter($db) {
 
     $this->_dbAdapter = $db;
   }

@@ -12,9 +12,8 @@ class Helper_Database extends Zend_Controller_Action_Helper_Abstract {
 
     public function preDispatch() {
 
-      //$bootstrap = $this->getActionController()->getInvokeArg('bootstrap');
-      //$dbAdapter = $bootstrap->getResource('db');
-      //$this->getActionController()->setDbAdapter($dbAdapter);
+      $dbAdapter = \ActiveRecord\Connection::instance();
+      $this->getActionController()->setDbAdapter($dbAdapter);
     }
 }
 

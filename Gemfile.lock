@@ -1,3 +1,9 @@
+GIT
+  remote: git://github.com/TechnoGate/parseconfig.git
+  revision: cbd2dd7175c777de72933a3c6a71451d9d346da1
+  specs:
+    parseconfig (0.6.0)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -14,7 +20,7 @@ GEM
     arel (2.0.7)
     builder (2.1.2)
     i18n (0.5.0)
-    parseconfig (0.5.2)
+    mysql (2.8.1)
     rake (0.8.7)
     standalone_migrations (0.3.0)
       activerecord
@@ -26,5 +32,6 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord
-  parseconfig
+  mysql
+  parseconfig!
   standalone_migrations

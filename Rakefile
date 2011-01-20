@@ -1,4 +1,13 @@
 require 'rubygems'
+require 'bundler'
+begin
+  Bundler.setup(:default, :development)
+rescue Bundler::BundlerError => e
+  $stderr.puts e.message
+  $stderr.puts "Run `bundle install` to install missing gems"
+  exit e.status_code
+end
+require 'rake'
 
 # Migrations
 begin
@@ -29,18 +38,18 @@ begin
     application_ini = File.expand_path(File.dirname(__FILE__)+'/application/configs/application.ini')
     raise "application.ini cannot be found please copy it from application.ini.sample" unless File.exist? application_ini
 
-    config_ini = ParseConfig.new(application_ini)
+    config_ini = TechnoGate::ParseConfig.new(application_ini)
     config_yml = File.open(File.expand_path(File.dirname(__FILE__)+'/db/config.yml'), 'w')
 
     db_config = Hash.new
     ['production', 'development'].each do |env|
       break unless config_ini.params.include? env
       db_config[env] = {
-        'adapter'  => config_ini.params[env]['resources.activerecord.connections.production.dsn.adapter'],
-        'hostname' => config_ini.params[env]['resources.activerecord.connections.production.dsn.hostspec'],
-        'username' => config_ini.params[env]['resources.activerecord.connections.production.dsn.user'],
-        'password' => config_ini.params[env]['resources.activerecord.connections.production.dsn.pass'],
-        'database' => config_ini.params[env]['resources.activerecord.connections.production.dsn.database'],
+        'adapter'  => config_ini.params[env]["resources.activerecord.connections.#{env}.dsn.adapter"],
+        'hostname' => config_ini.params[env]["resources.activerecord.connections.#{env}.dsn.hostspec"],
+        'username' => config_ini.params[env]["resources.activerecord.connections.#{env}.dsn.user"],
+        'password' => config_ini.params[env]["resources.activerecord.connections.#{env}.dsn.pass"],
+        'database' => config_ini.params[env]["resources.activerecord.connections.#{env}.dsn.database"],
       }
     end
 

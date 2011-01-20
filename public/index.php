@@ -60,7 +60,7 @@ if (! defined('APPLICATION_ENV'))
 set_include_path(APPLICATION_PATH
   . PATH_SEPARATOR . realpath(ROOT_PATH . '/library')
   . PATH_SEPARATOR . realpath(ROOT_PATH . '/library/Zend/library')
-  . PATH_SEPARATOR . realpath(ROOT_PATH . '/library/php-activerecord')
+  . PATH_SEPARATOR . realpath(ROOT_PATH . '/library/doctrine1/lib')
   . PATH_SEPARATOR . realpath(APPLICATION_PATH . '/models/')
   . PATH_SEPARATOR . realpath(APPLICATION_PATH . '/models/Exceptions')
   . PATH_SEPARATOR . realpath(APPLICATION_PATH . '/forms/')

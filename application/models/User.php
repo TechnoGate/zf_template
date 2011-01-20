@@ -44,9 +44,9 @@ class User extends ActiveRecord\Model {
   public function validate() {
 
     if(!empty($this->_password) && $this->_password != $this->_password_confirmation)
-      $this->errors->add('password_confirmation', 'Password confirmation does not match password');
+      $this->errors->add('password_confirmation', __('Password confirmation does not match password'));
     if($this->is_new_record() && empty($this->_password))
-      $this->errors->add('password', 'Password is required');
+      $this->errors->add('password', __('Password is required'));
   }
 
   // Hooks

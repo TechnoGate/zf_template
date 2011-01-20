@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Technogate Project Template\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-01-20 03:09+0100\n"
+"POT-Creation-Date: 2011-01-20 04:11+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Wael Nasreddine <wael@technogate.fr>\n"
 "Language-Team: TechnoGate <team@technogate.fr>\n"
@@ -61,6 +61,14 @@ msgstr "Confirmer votre mot de passe"
 #: application/forms/Technogate/CreateUserForm.php:72
 msgid "Email"
 msgstr "Email"
+
+#: application/models/User.php:47
+msgid "Password confirmation does not match password"
+msgstr "Les deux mots de passe sont diffèrents"
+
+#: application/models/User.php:49
+msgid "Password is required"
+msgstr "Le mot de passe est obligatoire"
 
 #: application/models/User.php:131
 msgid "activate your account"

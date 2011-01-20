@@ -19,6 +19,17 @@ ActiveRecord::Schema.define(:version => 20110120140144) do
     t.datetime "updated_at"
   end
 
+  create_table "events", :force => true do |t|
+    t.integer  "thing_id",                 :null => false
+    t.string   "thing_type", :limit => 16, :null => false
+    t.string   "name",       :limit => 45
+    t.string   "type",       :limit => 45
+    t.integer  "parent_id"
+    t.text     "parameters"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "users", :force => true do |t|
     t.string   "login",           :limit => 30,                    :null => false
     t.string   "name",                                             :null => false

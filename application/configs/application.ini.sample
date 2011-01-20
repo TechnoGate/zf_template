@@ -34,14 +34,15 @@ resources.translate.data = ROOT_PATH "/data/locales"
 resources.translate.options.scan = directory
 resources.translate.locale = en
 
+resources.activerecord.default_connection = production
+resources.activerecord.model_directory = APPLICATION_PATH "/models"
+
 resources.activerecord.connections.production.dsn.adapter = mysql
 resources.activerecord.connections.production.dsn.user =
 resources.activerecord.connections.production.dsn.pass =
 resources.activerecord.connections.production.dsn.hostspec = localhost
 resources.activerecord.connections.production.dsn.database =
 resources.activerecord.connections.production.dsn.options.charset = utf8
-resources.activerecord.default_connection = production
-resources.activerecord.model_directory = APPLICATION_PATH "/models"
 
 fontPath = ROOT_PATH "/data/fonts"
 captcha.font = "Arial.ttf"
@@ -84,9 +85,7 @@ resources.activerecord.connections.testing.dsn.user =
 resources.activerecord.connections.testing.dsn.pass =
 resources.activerecord.connections.testing.dsn.hostspec = localhost
 resources.activerecord.connections.testing.dsn.database =
-resources.activerecord.connections.testing.dsn.options.charset = utf8
 resources.activerecord.default_connection = testing
-resources.activerecord.model_directory = APPLICATION_PATH "/models"
 
 [development : testing]
 resources.activerecord.connections.development.dsn.adapter = mysql
@@ -94,6 +93,4 @@ resources.activerecord.connections.development.dsn.user =
 resources.activerecord.connections.development.dsn.pass =
 resources.activerecord.connections.development.dsn.hostspec = localhost
 resources.activerecord.connections.development.dsn.database =
-resources.activerecord.connections.development.dsn.options.charset = utf8
 resources.activerecord.default_connection = development
-resources.activerecord.model_directory = APPLICATION_PATH "/models"

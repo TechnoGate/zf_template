@@ -1,5 +1,8 @@
+require 'rubygems'
+
 # Migrations
 begin
+	require 'active_record'
   require 'tasks/standalone_migrations'
   MigratorTasks.new do |t|
     t.migrations = "db/migrations"
@@ -11,7 +14,7 @@ begin
     # t.log_level = Logger::ERROR
   end
 rescue LoadError => e
-  puts "standalone_migrations is not installed, please run 'bundle install'"
+  puts "Please run 'bundle install', #{e}"
 end
 
 # Config generator
@@ -44,5 +47,5 @@ begin
     config_yml.write(YAML::dump(db_config))
   end
 rescue LoadError => e
-  puts "parseconfig is not installed, please run 'bundle install'"
+  puts "Please run 'bundle install', #{e}"
 end

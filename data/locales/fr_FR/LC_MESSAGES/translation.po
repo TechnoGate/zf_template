@@ -1,0 +1,241 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Technogate Project Template\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-01-20 03:09+0100\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Wael Nasreddine <wael@technogate.fr>\n"
+"Language-Team: TechnoGate <team@technogate.fr>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: French\n"
+"X-Poedit-Country: FRANCE\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-KeywordsList: __;_\n"
+"X-Poedit-Basepath: ../../../../\n"
+"X-Poedit-SearchPath-0: application\n"
+"X-Poedit-SearchPath-1: library/Technogate\n"
+"X-Poedit-SearchPath-2: scripts\n"
+"X-Poedit-SearchPath-3: tests\n"
+
+#: application/modules/default/controllers/UsersController.php:29
+msgid "Create your account"
+msgstr "Créez votre compte"
+
+#: application/modules/default/controllers/UsersController.php:83
+msgid "Login"
+msgstr "Connexion"
+
+#: application/modules/default/controllers/UsersController.php:135
+#: application/modules/default/controllers/TokenController.php:25
+msgid "Token does not exist"
+msgstr ""
+
+#: application/modules/default/controllers/UsersController.php:139
+#: application/modules/default/controllers/TokenController.php:29
+msgid "Token no longer available."
+msgstr ""
+
+#: application/forms/Technogate/LoginForm.php:31
+#: application/forms/Technogate/CreateUserForm.php:41
+msgid "User Name"
+msgstr "Nom d'utilisateur"
+
+#: application/forms/Technogate/LoginForm.php:40
+#: application/forms/Technogate/CreateUserForm.php:52
+msgid "Password"
+msgstr "Mot de passe"
+
+#: application/forms/Technogate/CreateUserForm.php:31
+#, fuzzy
+msgid "Name"
+msgstr "Nom d'utilisateur"
+
+#: application/forms/Technogate/CreateUserForm.php:62
+msgid "Verify Password"
+msgstr "Confirmer votre mot de passe"
+
+#: application/forms/Technogate/CreateUserForm.php:72
+msgid "Email"
+msgstr "Email"
+
+#: application/models/User.php:131
+msgid "activate your account"
+msgstr "Activez votre compte"
+
+#: application/models/Exceptions/UserException.php:40
+#, fuzzy
+msgid "No user is currently logged in"
+msgstr "Pas d'utilisateur connecté"
+
+#: application/models/Exceptions/UserException.php:41
+msgid "No user has been given"
+msgstr "Aucun utilisateur a été donnée"
+
+#: application/models/Exceptions/UserException.php:42
+#, fuzzy
+msgid "This email is not associated with a user"
+msgstr "L'email n'est associé avec aucun utilisateur"
+
+#: application/models/Exceptions/UserException.php:43
+#, fuzzy
+msgid "The user can't be found in the database"
+msgstr "L'utilisateur ne peut pas se trouver dans la base de donnée"
+
+#: application/models/Exceptions/UserException.php:44
+msgid "The user name already exists, please choose another."
+msgstr ""
+
+#: application/models/Exceptions/UserException.php:45
+#, fuzzy
+msgid "The email already exists."
+msgstr "Un compte avec cette adresse existe déjà"
+
+#: application/models/Exceptions/UserException.php:46
+msgid "You must provide a username or a password"
+msgstr ""
+
+#: application/models/Exceptions/UserException.php:47
+msgid "You need to activate your account, please check your email."
+msgstr ""
+
+#: application/models/Exceptions/UserException.php:48
+msgid "Your account status cannot be determined, please report this."
+msgstr ""
+
+#: application/models/Exceptions/UserException.php:49
+msgid "Login failed"
+msgstr ""
+
+#: application/models/Exceptions/UserException.php:50
+msgid "Your account has been blocked."
+msgstr ""
+
+#: application/models/Exceptions/UserException.php:51
+msgid "No facebook account associated with this account"
+msgstr ""
+
+#: application/models/Exceptions/TechnogateException.php:32
+#, fuzzy
+msgid "Unknown error has occured"
+msgstr "Une erreur est survenue"
+
+#: application/models/Exceptions/TokenException.php:15
+msgid "The token does not exist"
+msgstr ""
+
+#: application/models/Exceptions/TokenException.php:16
+msgid "The token has expired"
+msgstr ""
+
+#: library/Technogate/Common.php:296
+msgid " year"
+msgid_plural "years"
+msgstr[0] "an"
+msgstr[1] "ans"
+
+#: library/Technogate/Common.php:298
+msgid " month"
+msgid_plural "months"
+msgstr[0] "mois"
+msgstr[1] "mois"
+
+#: library/Technogate/Common.php:300
+msgid " week"
+msgid_plural "weeks"
+msgstr[0] "semaine"
+msgstr[1] "semaines"
+
+#: library/Technogate/Common.php:302
+msgid " day"
+msgid_plural " days"
+msgstr[0] "jour"
+msgstr[1] "jours"
+
+#: library/Technogate/Common.php:304
+msgid " hour"
+msgid_plural " hours"
+msgstr[0] "heure"
+msgstr[1] "heures"
+
+#: library/Technogate/Common.php:306
+msgid " minute"
+msgid_plural " minutes"
+msgstr[0] "minute"
+msgstr[1] "minutes"
+
+#: library/Technogate/Common.php:308
+msgid " second"
+msgid_plural " seconds"
+msgstr[0] "seconde"
+msgstr[1] "secondes"
+
+#: library/Technogate/Form.php:37
+msgid "Verification Code : *"
+msgstr "Code de vérification : *"
+
+#: application/modules/default/views/scripts/pagin.phtml:6
+#: application/modules/default/views/scripts/pagin.phtml:8
+msgid "Previous"
+msgstr ""
+
+#: application/modules/default/views/scripts/pagin.phtml:22
+#: application/modules/default/views/scripts/pagin.phtml:24
+msgid "Next"
+msgstr ""
+
+#: application/modules/default/views/scripts/shared/_error_messages.phtml:3
+#, php-format
+msgid "%s prohibited %s from being saved"
+msgstr ""
+
+#: application/modules/default/views/scripts/shared/_error_messages.phtml:5
+msgid "There were problems with the following fields:"
+msgstr ""
+
+#: application/modules/default/views/scripts/index/index.phtml:4
+msgid "Logout"
+msgstr ""
+
+#: application/modules/default/views/scripts/index/index.phtml:6
+msgid "Sign up"
+msgstr "Créez votre compte"
+
+#: application/modules/default/views/scripts/index/index.phtml:8
+msgid "Sign in"
+msgstr "Se connecter"
+
+#: application/modules/default/views/scripts/error/no-js.phtml:4
+msgid "This application needs javascript, please activate it"
+msgstr "Cette application ne fonctionne pas sans Javascript merci de l'activer"
+
+#: application/modules/default/views/scripts/users/account-activated.phtml:2
+msgid "Your account has been activated."
+msgstr ""
+
+#: application/views/mailTemplates/send-account-activation.phtml:1
+msgid "Hello"
+msgstr "Bonjour"
+
+#: application/views/mailTemplates/send-account-activation.phtml:3
+#, php-format
+msgid "You have created an account on %s, but we have to verify the validity of your e-mail address."
+msgstr "Vous venez de vous inscrire sur %s, nous devons vérifier votre adresse email."
+
+#: application/views/mailTemplates/send-account-activation.phtml:5
+msgid "Please use the link below in order to activate your account"
+msgstr "Utiliser ce lien pour activer votre compte"
+
+#: application/views/mailTemplates/send-account-activation.phtml:9
+#, php-format
+msgid "See you soon on %s"
+msgstr "A très bientôt sur %s"
+
+#: application/views/mailTemplates/send-account-activation.phtml:11
+#, php-format
+msgid "%s team"
+msgstr "L'équipe de %s"
+

@@ -1,0 +1,5 @@
+<?= $this->message ?>
+<? if(!empty($this->errors)) { ?>
+  <?= $this->partial('shared/_error_messages.phtml', array('errors' => $this->errors, 'form_name' => $this->form_name)) ?>
+<? } ?>
+<?= $this->form ?>

@@ -1,0 +1,25 @@
+#!/usr/bin/env sh
+#
+# vim:ft=sh:fenc=UTF-8:ts=4:sts=4:sw=4:expandtab:foldmethod=marker:foldlevel=0:
+#
+# Author: Wael Nasreddine (TechnoGate) <wael@technogate.fr>
+
+# Load the functions. #{{{
+# Determine the location of the functions file and source it.
+SCRIPT_DIR=`dirname $0`
+pushd $SCRIPT_DIR > /dev/null
+GIT_DIR=`git rev-parse --git-dir 2>| /dev/null`
+pushd `dirname $GIT_DIR` > /dev/null
+source devel_tools/lib/bash/common
+#}}}
+
+if [ -d 'library/Zend' ]; then
+    pushd library/Zend > /dev/null
+    git co master
+    git pull
+    popd > /dev/null
+    git add library/Zend
+    git commit -m 'MISC: Update Zend library'
+else
+    print_error 0 'library/Zend is not a folder, cannot continue.'
+fi

@@ -1,0 +1,59 @@
+# Ignore Zend specific files.
+\.cache
+\.project
+\.settings
+\.buildpath
+
+# Ignore ZF cache
+.zfcache/*
+!.zfcache/.keep
+
+# Ignore Netbeans IDE files
+nbproject
+
+# Ignore my personal todo!
+\.todo
+
+# Ignore htaccess because I don't want to touch that!
+.htaccess
+.htaccess.bak
+
+# Ignore the config.ini
+application/configs/application.ini
+application/configs/application.ini.bak
+application/configs/application.ini-branch-*
+
+# Ignore uploaded files
+public/uploads/*
+
+# Ignore generated captcha files
+public/img/captcha/*
+
+# Ignore generated stats files
+public/img/stats/*
+
+# logs
+mail.log
+scripts/*.log
+
+# Google domain verification
+google*.html
+
+# Anything in Temp
+temp/*
+
+# the checkstyle Eclipse plugin.
+.checkstyle
+
+# Ignore templates
+template.phtml
+
+# Ignore backup files
+*~
+*.bak
+
+# Ignore the phpinfo file
+phpinfo.php
+
+# Whitelist keep file
+!.keep

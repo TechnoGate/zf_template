@@ -1,0 +1,7 @@
+User-Agent: *
+Allow: /
+Disallow: /img
+Disallow: /uploads
+Disallow: /token
+Disallow: /account
+Disallow: /error

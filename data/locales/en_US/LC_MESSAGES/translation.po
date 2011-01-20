@@ -1,0 +1,234 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Technogate Project Template\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-01-20 03:08+0100\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Wael Nasreddine <wael@technogate.fr>\n"
+"Language-Team: TechnoGate <team@technogate.fr>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: English\n"
+"X-Poedit-Country: UNITED STATES\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-KeywordsList: __;_\n"
+"X-Poedit-Basepath: ../../../../\n"
+"X-Poedit-SearchPath-0: application\n"
+"X-Poedit-SearchPath-1: library/Technogate\n"
+"X-Poedit-SearchPath-2: scripts\n"
+"X-Poedit-SearchPath-3: tests\n"
+
+#: application/modules/default/controllers/UsersController.php:29
+msgid "Create your account"
+msgstr ""
+
+#: application/modules/default/controllers/UsersController.php:83
+msgid "Login"
+msgstr ""
+
+#: application/modules/default/controllers/UsersController.php:135
+#: application/modules/default/controllers/TokenController.php:25
+msgid "Token does not exist"
+msgstr ""
+
+#: application/modules/default/controllers/UsersController.php:139
+#: application/modules/default/controllers/TokenController.php:29
+msgid "Token no longer available."
+msgstr ""
+
+#: application/forms/Technogate/LoginForm.php:31
+#: application/forms/Technogate/CreateUserForm.php:41
+msgid "User Name"
+msgstr ""
+
+#: application/forms/Technogate/LoginForm.php:40
+#: application/forms/Technogate/CreateUserForm.php:52
+msgid "Password"
+msgstr ""
+
+#: application/forms/Technogate/CreateUserForm.php:31
+msgid "Name"
+msgstr ""
+
+#: application/forms/Technogate/CreateUserForm.php:62
+msgid "Verify Password"
+msgstr ""
+
+#: application/forms/Technogate/CreateUserForm.php:72
+msgid "Email"
+msgstr ""
+
+#: application/models/User.php:131
+msgid "activate your account"
+msgstr ""
+
+#: application/models/Exceptions/UserException.php:40
+msgid "No user is currently logged in"
+msgstr ""
+
+#: application/models/Exceptions/UserException.php:41
+msgid "No user has been given"
+msgstr ""
+
+#: application/models/Exceptions/UserException.php:42
+msgid "This email is not associated with a user"
+msgstr ""
+
+#: application/models/Exceptions/UserException.php:43
+msgid "The user can't be found in the database"
+msgstr ""
+
+#: application/models/Exceptions/UserException.php:44
+msgid "The user name already exists, please choose another."
+msgstr ""
+
+#: application/models/Exceptions/UserException.php:45
+msgid "The email already exists."
+msgstr ""
+
+#: application/models/Exceptions/UserException.php:46
+msgid "You must provide a username or a password"
+msgstr ""
+
+#: application/models/Exceptions/UserException.php:47
+msgid "You need to activate your account, please check your email."
+msgstr ""
+
+#: application/models/Exceptions/UserException.php:48
+msgid "Your account status cannot be determined, please report this."
+msgstr ""
+
+#: application/models/Exceptions/UserException.php:49
+msgid "Login failed"
+msgstr ""
+
+#: application/models/Exceptions/UserException.php:50
+msgid "Your account has been blocked."
+msgstr ""
+
+#: application/models/Exceptions/UserException.php:51
+msgid "No facebook account associated with this account"
+msgstr ""
+
+#: application/models/Exceptions/TechnogateException.php:32
+msgid "Unknown error has occured"
+msgstr ""
+
+#: application/models/Exceptions/TokenException.php:15
+msgid "The token does not exist"
+msgstr ""
+
+#: application/models/Exceptions/TokenException.php:16
+msgid "The token has expired"
+msgstr ""
+
+#: library/Technogate/Common.php:296
+msgid " year"
+msgid_plural "years"
+msgstr[0] ""
+msgstr[1] ""
+
+#: library/Technogate/Common.php:298
+msgid " month"
+msgid_plural "months"
+msgstr[0] ""
+msgstr[1] ""
+
+#: library/Technogate/Common.php:300
+msgid " week"
+msgid_plural "weeks"
+msgstr[0] ""
+msgstr[1] ""
+
+#: library/Technogate/Common.php:302
+msgid " day"
+msgid_plural " days"
+msgstr[0] ""
+msgstr[1] ""
+
+#: library/Technogate/Common.php:304
+msgid " hour"
+msgid_plural " hours"
+msgstr[0] ""
+msgstr[1] ""
+
+#: library/Technogate/Common.php:306
+msgid " minute"
+msgid_plural " minutes"
+msgstr[0] ""
+msgstr[1] ""
+
+#: library/Technogate/Common.php:308
+msgid " second"
+msgid_plural " seconds"
+msgstr[0] ""
+msgstr[1] ""
+
+#: library/Technogate/Form.php:37
+msgid "Verification Code : *"
+msgstr ""
+
+#: application/modules/default/views/scripts/pagin.phtml:6
+#: application/modules/default/views/scripts/pagin.phtml:8
+msgid "Previous"
+msgstr ""
+
+#: application/modules/default/views/scripts/pagin.phtml:22
+#: application/modules/default/views/scripts/pagin.phtml:24
+msgid "Next"
+msgstr ""
+
+#: application/modules/default/views/scripts/shared/_error_messages.phtml:3
+#, php-format
+msgid "%s prohibited %s from being saved"
+msgstr ""
+
+#: application/modules/default/views/scripts/shared/_error_messages.phtml:5
+msgid "There were problems with the following fields:"
+msgstr ""
+
+#: application/modules/default/views/scripts/index/index.phtml:4
+msgid "Logout"
+msgstr ""
+
+#: application/modules/default/views/scripts/index/index.phtml:6
+msgid "Sign up"
+msgstr ""
+
+#: application/modules/default/views/scripts/index/index.phtml:8
+msgid "Sign in"
+msgstr ""
+
+#: application/modules/default/views/scripts/error/no-js.phtml:4
+msgid "This application needs javascript, please activate it"
+msgstr ""
+
+#: application/modules/default/views/scripts/users/account-activated.phtml:2
+msgid "Your account has been activated."
+msgstr ""
+
+#: application/views/mailTemplates/send-account-activation.phtml:1
+msgid "Hello"
+msgstr ""
+
+#: application/views/mailTemplates/send-account-activation.phtml:3
+#, php-format
+msgid "You have created an account on %s, but we have to verify the validity of your e-mail address."
+msgstr ""
+
+#: application/views/mailTemplates/send-account-activation.phtml:5
+msgid "Please use the link below in order to activate your account"
+msgstr ""
+
+#: application/views/mailTemplates/send-account-activation.phtml:9
+#, php-format
+msgid "See you soon on %s"
+msgstr ""
+
+#: application/views/mailTemplates/send-account-activation.phtml:11
+#, php-format
+msgid "%s team"
+msgstr ""
+

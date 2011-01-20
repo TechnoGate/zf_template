@@ -1,0 +1,1 @@
+TECHNOGATE_JS={};TECHNOGATE_JS.showTechnogateFormError=function(a,b){$j("#technogateFormSubmit").removeAttr("disabled");$j("#"+a+"Field>.fieldZone").append('<div class="errormsg">'+b+"</div>")};

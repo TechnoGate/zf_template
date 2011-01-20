@@ -1,0 +1,77 @@
+[production]
+phpSettings.display_startup_errors = 0
+phpSettings.display_errors = 0
+resources.frontController.throwerrors = 0
+includePaths.library = ROOT_PATH "/library"
+resources.modulesetup[] =
+resources.modules[] =
+bootstrap.path = APPLICATION_PATH "/Bootstrap.php"
+bootstrap.class = "Bootstrap"
+
+autoloadernamespaces.0 = Technogate
+autoloadernamespaces.1 = ActiveRecord
+
+pluginPaths.Technogate_Application_Resource = "Technogate/Application/Resource"
+pluginPaths.ZendX_Activerecord_Application_Resource= "ZendX/Activerecord/Application/Resource"
+pluginPaths.Technogate_Application_Resource = "Technogate/Application/Resource"
+
+resources.frontController.controllerdirectory = APPLICATION_PATH "/controllers"
+resources.frontController.params.prefixDefaultModule = false
+resources.frontController.moduledirectory = APPLICATION_PATH "/modules"
+resources.frontController.defaultModule = "default"
+resources.frontController.plugins.moduleloader = Technogate_Controller_Plugin_ModuleLoader
+resources.frontController.plugins.layoutloader = Technogate_Controller_Plugin_RequestedModuleLayoutLoader
+resources.layout.layout = "layout"
+resources.layout.layoutpath = APPLICATION_PATH "/modules/default/layouts"
+resources.translate.adapter = gettext
+resources.translate.data = ROOT_PATH "/data/locales"
+resources.translate.options.scan = directory
+resources.translate.locale = en_US
+
+resources.activerecord.connections.production.dsn.adapter = mysql
+resources.activerecord.connections.production.dsn.user =
+resources.activerecord.connections.production.dsn.pass =
+resources.activerecord.connections.production.dsn.hostspec =
+resources.activerecord.connections.production.dsn.database =
+resources.activerecord.connections.production.dsn.options.charset = utf8
+resources.activerecord.default_connection = production
+resources.activerecord.model_directory = APPLICATION_PATH "/models"
+
+fontPath = ROOT_PATH "/data/fonts"
+captcha.font = "Arial.ttf"
+
+app.domain = .example.com
+app.uploadpath = ROOT_PATH "/public/uploads/"
+app.uploadurl = /uploads/
+app.host = www.example.com
+app.domain = .example.com
+app.cookieDomain = .example.com
+app.googleMapsApiKey =
+app.version = 0.1
+app.title = Template
+app.logo = img/logo.png
+app.facebook.apikey =
+
+app.models.mail.smtp.0.host =
+app.models.mail.smtp.0.params.auth = login
+app.models.mail.smtp.0.params.username =
+app.models.mail.smtp.0.params.password =
+app.models.mail.smtp.0.params.ssl =
+app.models.mail.smtp.0.params.port =
+app.models.mail.from.name = Template
+app.models.mail.from.email = template@example.com
+app.models.mail.charset = utf-8
+
+app.models.security.secret_token =
+
+
+[production-scripts : production]
+
+[staging : production]
+phpSettings.display_startup_errors = 1
+phpSettings.display_errors = 1
+resources.frontController.throwerrors = 1
+
+[testing : staging]
+
+[development : testing]

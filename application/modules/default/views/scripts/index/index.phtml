@@ -1,0 +1,9 @@
+<p>Hello World!</p>
+
+<? if($this->identity) { ?>
+  <p>Bonjour <?= $this->identity->name ?>, <a href="<?=$this->surl(':logout')?>"><?=__("Logout") ?></a></p>
+<? } else {?>
+  <p><a href="<?=$this->surl(':register')?>"><?= __("Sign up")?></a></p>
+
+  <p><a href="<?=$this->surl(':login')?>"><?= __("Sign in")?></a></p>
+<? } ?>

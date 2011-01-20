@@ -1,0 +1,47 @@
+Deployment notes
+================
+
+- Import the following mysql files *in order*
+  - data/db/setup.sql
+  - data/db/setup_data.sql
+  - data/db/cities.sql
+- Copy the file application/configs/application.ini.sample to
+  application/configs/application.ini and edit it, make sure to
+  correctly fill the MySQL parameters, if you're deploying on the
+  production server, you can simply copy
+  application/configs/application-prod.ini to
+  application/configs/application.ini, It has already all the required
+  parameters
+- Copy public/.htaccess.sample to public/.htaccess and edit it, make
+  sure to modify the environment.
+- make *only* the public folder visible by apache!!
+
+Requirements
+============
+
+* You need apache2 and PHP5 < 5.3
+* You need the following PHP extensions (PHP5):
+  - gd.so
+  - gettext.so
+  - iconv.so
+  - json.so
+  - mcrypt.so
+  - mhash.so
+  - mysql.so
+  - pdo.so
+  - pdo_mysql.so
+  - session.so
+  - zlib.so
+* You need the following PHP configurations (PHP5):
+  - magic_quotes_gpc = Off
+  - magic_quotes_runtime = Off
+  - magic_quotes_sybase = Off
+  - upload_max_filesize = 10M
+* You need the following mysql configuration (/etc/mysql/my.cnf) :
+  - [mysqld]
+    ft_min_word_len=3
+* You need the following apache modules:
+  - rewrite_module
+  - php5_module
+* You need the following pear modules:
+  - Spreadsheet_Excel_Writer (pear install -f Spreadsheet_Excel_Writer)

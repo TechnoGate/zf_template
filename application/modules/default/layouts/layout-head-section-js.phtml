@@ -1,0 +1,21 @@
+<? $version = '?version=' . Git::getBranchVersion(); ?>
+
+<script type="text/javascript" src="<?=$this->baseUrl()?>/js/packs/jquery/jquery.js<?=$version?>"></script>
+<script type="text/javascript">
+var jsBaseUrl = '<?=$this->baseUrl();?>'
+  var jsBaseUrlServer = '<?=$this->baseUrl(true);?>'
+  var $j = jQuery.noConflict();
+<? if (Session::checkSessionOpened()){?>
+var identity = '<?=$this->identity?>';
+<?}else{?>
+var identity = '';
+<?}?>
+</script>
+<script src="<?=$this->baseUrl()?>/js/technogate/base.js<?=$version?>" type="text/javascript"></script>
+<script src="<?=$this->baseUrl()?>/js/technogate/technogate.js<?=$version?>" type="text/javascript"></script>
+
+<script type="text/javascript" src="<?=$this->baseUrl()?>/js/packs/jqueryui/jquery-ui.js<?=$version?>"></script>
+<script type="text/javascript" src="<?=$this->baseUrl()?>/js/packs/jqueryui/translations/ui.datepicker-fr.js<?=$version?>"></script>
+<script type="text/javascript" src="<?=$this->baseUrl()?>/js/packs/jquery/plugins/jquery.color.js<?=$version?>"></script>
+<script type="text/javascript" src="<?=$this->baseUrl()?>/js/packs/jquery/plugins/jquery.autogrow.js<?=$version?>"></script>
+<script type="text/javascript" src="<?=$this->baseUrl()?>/js/packs/jquery/plugins/jquery.colorpicker.js<?=$version?>"></script>

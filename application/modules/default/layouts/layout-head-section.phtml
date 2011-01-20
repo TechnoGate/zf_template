@@ -1,0 +1,45 @@
+<? $version = '?version=' . Git::getBranchVersion(); ?>
+
+<!-- FavIcon -->
+<link rel="shortcut icon" type="image/png" href="<?=$this->baseUrl();?>img/favicon.png" />
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+
+<!-- Blueprint CSS -->
+<link href="<?=$this->baseUrl();?>/css/blueprint/screen.css<?=$version?>" media="screen" rel="stylesheet" type="text/css" />
+<link href="<?=$this->baseUrl();?>/css/blueprint/print.css<?=$version?>" media="print" rel="stylesheet" type="text/css" />
+<!--[if lt IE 8]>
+	<link href="<?=$this->baseUrl();?>/css/blueprint/ie.css<?=$version?>" rel="stylesheet" type="text/css" />
+<![endif]-->
+
+<!-- Custom CSS -->
+<link href="<?=$this->baseUrl();?>/css/custom.css<?=$version?>" media="screen" rel="stylesheet" type="text/css" />
+<!--[if IE 6]>
+	<link  href="<?=$this->baseUrl();?>/css/custom-ie6.css<?=$version?>" media="screen" rel="stylesheet" type="text/css" />
+<![endif]-->
+<!--[if IE 7]>
+	<link  href="<?=$this->baseUrl();?>/css/custom-ie7.css<?=$version?>" media="screen" rel="stylesheet" type="text/css" />
+<![endif]-->
+
+<!-- IE HTML5 fix -->
+<!--[if lt IE 9]>
+<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<!-- Javascript CSS -->
+<link href="<?=$this->baseUrl();?>/css/jsCss/packs/jqueryui/smoothness/ui.all.css<?=$version?>" media="screen" rel="stylesheet" type="text/css" />
+<link href="<?=$this->baseUrl();?>/css/jsCss/packs/jquery/plugins/colorpicker/colorpicker.css<?=$version?>" media="screen" rel="stylesheet" type="text/css" />
+
+<!-- Meta Tags -->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="content-language" content="en" />
+<meta name="keywords" content="" />
+<meta name="author" content="" />
+<meta name="language" content="" />
+<meta name="copyright" content="" />
+<meta name="title" content="<?=$this->pageTitle?>" />
+<meta name="description" content="<?=$this->metaDescription?>" />
+
+<!-- Title -->
+<title><?=$this->pageTitle?></title>
+
+<?= $this->partial("layout-head-section-js.phtml")?>

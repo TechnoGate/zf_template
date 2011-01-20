@@ -1,0 +1,106 @@
+DEVELOPER GUIDE
+===============
+X-Editor: Vim-703 http://www.vim.org
+X-Editor: Vim-703 http://www.vim.org
+
+Hello,
+
+This is a small development guide, written to help you while develop,
+I will try and list all the common problems that I have had over time
+and lost many precious hours over, I will also give you a brief rules
+on how we format the code, so let's start:
+
+Rules
+===============
+
+1 - Make sure you do not commit CRLF line ending, this is very
+    disturbing for cross-platform development and can cause conflicts
+    just because one version has LF and another has a CRLF.
+
+    We run all of out projects on a Linux machine, so we chose to use
+    LF, so please do the following:
+
+    If you're a windows user, please do (in project's folder):
+
+	git config core.autocrlf true
+
+    If you're a Mac/Linux/Unix user, then please do (in project's folder):
+
+	git config core.autocrlf input
+
+    And make sure that you have -indent-with-non-tab and -cr-at-eol in your core.whitespace
+    config, or just re-configure git
+
+	git config core.whitespace trailing-space,space-before-tab,-indent-with-non-tab,-cr-at-eol
+
+
+2 - Never ever commit something with a trailing white space, your editor
+    can be set to remove it automatically, please refer to the manual of
+    your editor.
+
+    You should enable the pre-commit hook:
+
+	cp devel_tools/git/hooks/client/pre-commit .git/hooks/pre-commit
+	chmod a+x .git/hooks/pre-commit
+
+3 - Every commit message should belong to a story, a bug or exploit, you
+    should never commit something that doesn't belong to any job.
+
+    Please enable the commit-msg hook:
+
+	cp devel_tools/git/hooks/client/commit-msg .git/hooks/commit-msg
+	chmod a+x .git/hooks/commit-msg
+
+
+
+HOWTO Publish to the prod
+=========================
+
+This section is reserved for the users who have access to the prod as
+root, if you don't have access to the production server, don't even
+continue reading this section.
+
+To publish to the prod you need to do the following from within the
+project folder
+
+Add the publish-prod remote
+
+	git remote add publish-prod _PRODUCTION_REPO
+
+Add the alias that publish the prod (under the project's folder):
+
+	git config alias.publish '!git push publish-prod master:master && git push --tags publish-prod && git pull publish-prod master:master && git push origin master:master'
+
+To publish just run
+
+	git publish
+
+NOTE:   Publishing goes from the master branch, if you need to publish
+	from another branch you need to do it manually, but it's not
+	recommended.
+
+
+
+
+Common Problems
+===============
+
+1 - You get a white page, and in apache logs all you have is something
+    like this:
+
+	[Wed Sep 23 21:48:13 2009] [notice] child pid 7218 exit signal Segmentation fault (11)
+
+    The first thing you need to do when you get something like this, is
+    to verify that the called controller is a direct descendent of the
+    Technogate_Controller_Action class, if that is verified but the problem
+    persists, verify that PHP is set to display *all* errors, not just
+    warnings, and sometimes even with *error_reporting = E_ALL* you
+    won't get any output because *display_errors = 0" make sure that is
+    enabled.
+
+
+--
+Wael Nasreddine
+wael.nasreddine@gmail.com
+
+# vim:ft=mail:fenc=UTF-8:ts=8:sts=8:sw=8:noexpandtab:foldmethod=marker:foldlevel=0:

@@ -1,0 +1,53 @@
+#!/usr/bin/env sh
+#
+# vim:ft=sh:fenc=UTF-8:ts=4:sts=4:sw=4:expandtab:foldmethod=marker:foldlevel=0:
+#
+# Author: Wael Nasreddine (TechnoGate) <wael@technogate.fr>
+
+# Load the functions. #{{{
+# Determine the location of the functions file and source it.
+SCRIPT_DIR=`dirname $0`
+pushd $SCRIPT_DIR > /dev/null
+GIT_DIR=`git rev-parse --git-dir 2>| /dev/null`
+pushd `dirname $GIT_DIR` > /dev/null
+source devel_tools/lib/bash/common
+#}}}
+
+if [ $# -lt 1 ]; then
+    print_error 0 "Usage: release <version> [REF]"
+    exit 1
+fi
+
+VERSION=$1
+REFS=$2
+
+cd `dirname $0`/..
+
+if ! git diff --quiet; then
+	print_info 2 ">>> Reverting to HEAD"
+	git stash
+    STASHED="1"
+fi
+
+sed -e "s@^\(app\.version =\).*@\1 ${VERSION}@g" -i application/configs/application*.ini* scripts/prod/deploy/git-hooks-post-update scripts/pre-prod/push/git-hooks-post-update
+
+git add -u application/configs/application*.ini* scripts/prod/deploy/git-hooks-post-update scripts/pre-prod/push/git-hooks-post-update
+
+git commit -e -m "Release Version ${VERSION}
+
+closes #${REFS}"
+
+if [ $? -ne 0 ]; then
+    print_error 0 "Did not commit correctly, aborting."
+
+    if [ "x${STASHED}" = "x1" ]; then
+		git stash pop
+    fi
+    exit 1
+fi
+
+git tag -s v${VERSION} -m "Release Version ${VERSION}"
+
+if [ "x${STASHED}" = "x1" ]; then
+    git stash pop
+fi

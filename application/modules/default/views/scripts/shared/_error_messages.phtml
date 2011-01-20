@@ -1,0 +1,19 @@
+<div id="error_explanation">
+  <h2>
+    <?= sprintf(__("%s prohibited %s from being saved"), pluralize(sizeof($this->errors), "error", "errors"), $this->form_name) ?>
+  </h2>
+  <p><?= __("There were problems with the following fields:") ?></p>
+  <ul>
+  <? foreach($this->errors as $field => $messages) { ?>
+    <? foreach($messages as $message) { ?>
+      <li><?= $message ?></li>
+    <? } ?>
+
+    <script type="text/javascript">
+      $j(function() {
+        $j('#<?= $field ?>').addClass('field_with_errors');
+      });
+    </script>
+  <? } ?>
+  </ul>
+</div>

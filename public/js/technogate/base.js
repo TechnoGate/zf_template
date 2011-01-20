@@ -1,0 +1,1 @@
+function notify(a,b){if(a==true){sn=new Notification();sn.setMessage(b);sn.show()}};

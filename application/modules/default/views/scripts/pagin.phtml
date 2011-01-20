@@ -1,0 +1,27 @@
+<?php if ($this->pageCount): ?>
+<div class="paginationControl">
+<?dbg($this);?>
+<!-- Previous page link -->
+<?php if (isset($this->previous)): ?>
+  <a class="paginNav" href="<?= $this->url(array('p' => $this->previous)); ?>">&lt;<?=_("Previous") ?></a>
+<?php else: ?>
+  <p class="paginNavDisabled"><?=_("Previous") ?></p>
+<?php endif; ?>
+
+<!-- Numbered page links -->
+<?php foreach ($this->pagesInRange as $page): ?>
+  <?php if ($page != $this->current): ?>
+    <a class="paginItem" href="<?= $this->url(array('p' => $page)); ?>"><?= $page; ?></a>
+  <?php else: ?>
+    <p class="paginItemDisabled"><?= $page; ?></p>
+  <?php endif; ?>
+<?php endforeach; ?>
+
+<!-- Next page link -->
+<?php if (isset($this->next)): ?>
+  <a class="paginNav" href="<?= $this->url(array('p' => $this->next)); ?>"><?=_("Next") ?> &gt;</a>
+<?php else: ?>
+  <p class="paginNavDisabled"><?=_("Next") ?></p>
+<?php endif; ?>
+</div>
+<?php endif; ?>

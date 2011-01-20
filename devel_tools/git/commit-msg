@@ -1,0 +1,26 @@
+#!/usr/bin/env ruby
+message_file = ARGV[0]
+message = File.read(message_file)
+
+$regex = /((refs|references|IssueID|fixes|closes) #(\d+)|MISC: |Merge)/
+
+if !$regex.match(message)
+  puts "[POLICY] Your message is not formatted correctly"
+  puts "\n\tRefused message: #{message}"
+  puts "\nYour commit message should absolutely reference the issue number in redmine"
+  puts "\n\tYou should use one of the below referencing keywords or fixing keywords"
+  puts "\n\tReferencing keywords:"
+  puts "\t\trefs #XXX"
+  puts "\t\treferences #XXX"
+  puts "\t\tIssueID #XXX"
+  puts "\n\tFixing keywords:"
+  puts "\t\tfixes #XXX"
+  puts "\t\tcloses #XXX"
+  puts "\n\treplace XXX with the issue's number."
+  puts "\n\tN.B: If the current commit is not related to any issue (which is usually a bad idea)"
+  puts "\tYou can use the MISC: keyword to bypass referencing an issue as follows."
+  puts "\n\t\tMISC: Commit message"
+  puts "\n\tN.B: There's a whitespace between MISC: and the commit message."
+  puts ""
+  exit 1
+end

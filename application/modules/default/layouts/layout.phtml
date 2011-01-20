@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <?= $this->partial("layout-head-section.phtml")?>
+</head>
+<body>
+  <div class="container">
+    <header></header>
+    <section>
+      <?= $this->flash_messages_html?>
+      <?= $this->layout()->content ?>
+    </section>
+    <footer>
+      <?= $this->partial("layout-footer.phtml")?>
+    </footer>
+  </div>
+</body>
+</html>

@@ -1,0 +1,14 @@
+<? $version = '?version=' . Git::getBranchVersion(); ?>
+
+<script>
+$j(document).ready(function(){
+
+  /** Call init only if it's defined */
+  if(typeof init == 'function') {
+    init();
+  }
+});
+</script>
+
+<? if(isProductionEnvironment()) { ?>
+<? } ?>

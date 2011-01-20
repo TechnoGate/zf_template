@@ -1,0 +1,70 @@
+/** Global */
+body {
+}
+
+.container {
+  width: 710px;
+}
+
+header {
+}
+
+section {
+}
+
+footer {
+}
+
+/** Generic classes */
+ul.list_style_none {
+  list-style: none;
+}
+
+.clear { clear: both; }
+
+/** flash messages */
+#flash_messages {
+  width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+  padding: 0;
+  text-align: center;
+}
+
+#flash_messages ul {
+  margin: 0;
+  padding: 0;
+}
+
+/* Error Messages */
+.field_with_errors {
+  padding: 2px;
+  background-color: red !important;
+  display: table;
+}
+
+#error_explanation {
+  width: 450px;
+  border: 2px solid red;
+  padding: 7px;
+  padding-bottom: 0;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+}
+
+#error_explanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 5px 5px 15px;
+  font-size: 12px;
+  margin: -7px;
+  margin-bottom: 0px;
+  background-color: #c00;
+  color: #fff;
+}
+
+#error_explanation ul li {
+  font-size: 12px;
+  list-style: square;
+}

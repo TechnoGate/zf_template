@@ -1,105 +1,141 @@
 <?php
 
-class Base_User extends ActiveRecord\Model {
+/**
+ * Base_User
+ *
+ * @property integer $id
+ * @property string $login
+ * @property string $name
+ * @property string $email
+ * @property string $hashed_password
+ * @property string $phone
+ * @property string $profile_picture
+ * @property string $status
+ * @property integer $blocked
+ * @property timestamp $last_login_at
+ * @property timestamp $created_at
+ * @property timestamp $updated_at
+ *
+ * @package    Base_Debug
+ * @author     Wael Nasreddine (TechnoGate) <wael@technogate.fr>
+ */
+class Base_User extends Doctrine_Record {
 
-  // Accesstible Attributes
-  static $attr_accessible = array(
-    'login',
-    'name',
-    'email',
-    'phone',
-    'profile_picture',
-    'status',
-    'blocked',
-  );
+  // Definition
+  public function setTableDefinition() {
 
-  // Virtual Attributes
-  protected $_password;
-  protected $_password_confirmation;
-
-  // Validations
-  static $validates_presence_of = array(
-    array('login'),
-    array('hashed_password'),
-    array('name'),
-    array('email'),
-    array('blocked'),
-  );
-  static $validates_uniqueness_of = array(
-    array('login'),
-    array('email'),
-  );
-  public function validate() {
-
-    if(!empty($this->_password) && $this->_password != $this->_password_confirmation)
-      $this->errors->add('password_confirmation', __('Password confirmation does not match password'));
-    if($this->is_new_record() && empty($this->_password))
-      $this->errors->add('password', __('Password is required'));
-  }
-
-  // Hooks
-  static $before_validation_on_create = array('before_validation_on_create');
-  static $after_create = array('after_create');
-
-  // Associations
-  static $has_many = array(
-    array('tokens',
-      'conditions'  => array('thing_type = ?', 'users'),
-      'foreign_key' => 'thing_id'
-    ),
-    array('logs'),
-    array('events',
-      'conditions'  => array('thing_type = ?', 'users'),
-      'foreign_key' => 'thing_id'
-    ),
-  );
-
-  // Functions
-  public function before_validation_on_create() {
-
-    $this->init_status_attr();
-    $this->init_blocked_attr();
-  }
-
-  public function after_create() {
-
-    $this->generate_token();
-
-    $this->sendActivationMail();
-  }
-
-  public function generate_token() {
-
-    $token = new Token(array(
-      'thing_id'    => $this->id,
-      'thing_type'  => 'users',
-      'action'      => 'default/users/activate',
-      'auto_delete' => true,
+    $this->setTableName('users');
+    $this->hasColumn('id', 'integer', 4, array(
+      'type' => 'integer',
+      'length' => 4,
+      'fixed' => false,
+      'unsigned' => false,
+      'primary' => true,
+      'autoincrement' => true,
     ));
-
-    if(!$token->save())
-      $this->errors->add('tokens', $token->errors);
+    $this->hasColumn('login', 'string', 30, array(
+      'type' => 'string',
+      'length' => 30,
+      'fixed' => false,
+      'unsigned' => false,
+      'primary' => false,
+      'notnull' => true,
+      'autoincrement' => false,
+    ));
+    $this->hasColumn('name', 'string', 255, array(
+      'type' => 'string',
+      'length' => 255,
+      'fixed' => false,
+      'unsigned' => false,
+      'primary' => false,
+      'notnull' => true,
+      'autoincrement' => false,
+    ));
+    $this->hasColumn('email', 'string', 255, array(
+      'type' => 'string',
+      'length' => 255,
+      'fixed' => false,
+      'unsigned' => false,
+      'primary' => false,
+      'notnull' => true,
+      'autoincrement' => false,
+    ));
+    $this->hasColumn('hashed_password', 'string', 255, array(
+      'type' => 'string',
+      'length' => 255,
+      'fixed' => false,
+      'unsigned' => false,
+      'primary' => false,
+      'notnull' => true,
+      'autoincrement' => false,
+    ));
+    $this->hasColumn('phone', 'string', 45, array(
+      'type' => 'string',
+      'length' => 45,
+      'fixed' => false,
+      'unsigned' => false,
+      'primary' => false,
+      'notnull' => false,
+      'autoincrement' => false,
+    ));
+    $this->hasColumn('profile_picture', 'string', 255, array(
+      'type' => 'string',
+      'length' => 255,
+      'fixed' => false,
+      'unsigned' => false,
+      'primary' => false,
+      'notnull' => false,
+      'autoincrement' => false,
+    ));
+    $this->hasColumn('status', 'string', 45, array(
+      'type' => 'string',
+      'length' => 45,
+      'fixed' => false,
+      'unsigned' => false,
+      'primary' => false,
+      'notnull' => false,
+      'autoincrement' => false,
+    ));
+    $this->hasColumn('blocked', 'integer', 1, array(
+      'type' => 'integer',
+      'length' => 1,
+      'fixed' => false,
+      'unsigned' => false,
+      'primary' => false,
+      'default' => '0',
+      'notnull' => true,
+      'autoincrement' => false,
+    ));
+    $this->hasColumn('last_login_at', 'timestamp', null, array(
+      'type' => 'timestamp',
+      'fixed' => false,
+      'unsigned' => false,
+      'primary' => false,
+      'notnull' => false,
+      'autoincrement' => false,
+    ));
+    $this->hasColumn('created_at', 'timestamp', null, array(
+      'type' => 'timestamp',
+      'fixed' => false,
+      'unsigned' => false,
+      'primary' => false,
+      'notnull' => false,
+      'autoincrement' => false,
+    ));
+    $this->hasColumn('updated_at', 'timestamp', null, array(
+      'type' => 'timestamp',
+      'fixed' => false,
+      'unsigned' => false,
+      'primary' => false,
+      'notnull' => false,
+      'autoincrement' => false,
+    ));
   }
 
-  public function init_blocked_attr() {
+  // Setup
+  public function setUp() {
 
-    $this->assign_attribute('blocked', false);
-  }
-
-  public function init_status_attr() {
-
-    $this->assign_attribute('status', self::WAITACTIVATION);
-  }
-
-  public function set_password($password) {
-
-    $this->_password = $password;
-    $this->hashed_password = Security::encodePassword($this->_password);
-  }
-
-  public function set_password_confirmation($password_confirmation) {
-
-    $this->_password_confirmation = $password_confirmation;
+    parent::setUp();
   }
 }
 

@@ -1,45 +1,121 @@
 <?php
 
-class Base_Token extends ActiveRecord\Model {
+/**
+ * Base_Token
+ *
+ * @property integer $id
+ * @property string $hash
+ * @property integer $thing_id
+ * @property string $thing_type
+ * @property string $action
+ * @property integer $used
+ * @property integer $auto_delete
+ * @property integer $status
+ * @property timestamp $created_at
+ * @property timestamp $updated_at
+ *
+ * @package    Base_Debug
+ * @author     Wael Nasreddine (TechnoGate) <wael@technogate.fr>
+ */
+class Base_Token extends Doctrine_Record {
 
-  // Validations
-  static $validates_presence_of = array(
-    array('action'),
-    array('hash'),
-    array('used'),
-    array('status'),
-  );
+  // Definition
+  public function setTableDefinition() {
 
-  // Hooks
-  static $before_validation_on_create = array('before_validation_on_create');
-
-  // Associations
-
-  public function before_validation_on_create() {
-
-    $this->init_hash_attr();
-    $this->init_status_attr();
-    $this->init_used_attr();
+    $this->setTableName('tokens');
+    $this->hasColumn('id', 'integer', 4, array(
+      'type' => 'integer',
+      'length' => 4,
+      'fixed' => false,
+      'unsigned' => false,
+      'primary' => true,
+      'autoincrement' => true,
+    ));
+    $this->hasColumn('hash', 'string', 40, array(
+      'type' => 'string',
+      'length' => 40,
+      'fixed' => false,
+      'unsigned' => false,
+      'primary' => false,
+      'notnull' => true,
+      'autoincrement' => false,
+    ));
+    $this->hasColumn('thing_id', 'integer', 4, array(
+      'type' => 'integer',
+      'length' => 4,
+      'fixed' => false,
+      'unsigned' => false,
+      'primary' => false,
+      'notnull' => true,
+      'autoincrement' => false,
+    ));
+    $this->hasColumn('thing_type', 'string', 16, array(
+      'type' => 'string',
+      'length' => 16,
+      'fixed' => false,
+      'unsigned' => false,
+      'primary' => false,
+      'notnull' => true,
+      'autoincrement' => false,
+    ));
+    $this->hasColumn('action', 'string', 255, array(
+      'type' => 'string',
+      'length' => 255,
+      'fixed' => false,
+      'unsigned' => false,
+      'primary' => false,
+      'notnull' => false,
+      'autoincrement' => false,
+    ));
+    $this->hasColumn('used', 'integer', 4, array(
+      'type' => 'integer',
+      'length' => 4,
+      'fixed' => false,
+      'unsigned' => false,
+      'primary' => false,
+      'notnull' => false,
+      'autoincrement' => false,
+    ));
+    $this->hasColumn('auto_delete', 'integer', 1, array(
+      'type' => 'integer',
+      'length' => 1,
+      'fixed' => false,
+      'unsigned' => false,
+      'primary' => false,
+      'notnull' => false,
+      'autoincrement' => false,
+    ));
+    $this->hasColumn('status', 'integer', 2, array(
+      'type' => 'integer',
+      'length' => 2,
+      'fixed' => false,
+      'unsigned' => false,
+      'primary' => false,
+      'notnull' => false,
+      'autoincrement' => false,
+    ));
+    $this->hasColumn('created_at', 'timestamp', null, array(
+      'type' => 'timestamp',
+      'fixed' => false,
+      'unsigned' => false,
+      'primary' => false,
+      'notnull' => false,
+      'autoincrement' => false,
+    ));
+    $this->hasColumn('updated_at', 'timestamp', null, array(
+      'type' => 'timestamp',
+      'fixed' => false,
+      'unsigned' => false,
+      'primary' => false,
+      'notnull' => false,
+      'autoincrement' => false,
+    ));
   }
 
-  public function init_hash_attr() {
+  // Setup
+  public function setUp() {
 
-    $hash = Security::generateKey($this->action);
-
-    while(Token::count(array('conditions' => array('hash = ?', $hash))) > 0)
-      $hash = Security::generateKey($this->action);
-
-    $this->assign_attribute('hash', $hash);
-  }
-
-  public function init_status_attr() {
-
-    $this->assign_attribute('status', self::ACTIVE);
-  }
-
-  public function init_used_attr() {
-
-    $this->assign_attribute('used', 0);
+    parent::setUp();
   }
 }
 

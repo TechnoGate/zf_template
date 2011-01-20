@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110120140144) do
+ActiveRecord::Schema.define(:version => 20110120142340) do
 
   create_table "debugs", :force => true do |t|
     t.string   "type",       :null => false
@@ -26,6 +26,20 @@ ActiveRecord::Schema.define(:version => 20110120140144) do
     t.string   "type",       :limit => 45
     t.integer  "parent_id"
     t.text     "parameters"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "logs", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "session_cookie"
+    t.string   "level",          :limit => 128, :null => false
+    t.string   "ip",             :limit => 20
+    t.string   "name",           :limit => 128, :null => false
+    t.string   "p1"
+    t.string   "p2"
+    t.string   "p3"
+    t.string   "p4"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

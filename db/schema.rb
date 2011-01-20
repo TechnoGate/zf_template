@@ -10,7 +10,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110120120910) do
+ActiveRecord::Schema.define(:version => 20110120140144) do
+
+  create_table "debugs", :force => true do |t|
+    t.string   "type",       :null => false
+    t.text     "desc"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "login",           :limit => 30,                    :null => false

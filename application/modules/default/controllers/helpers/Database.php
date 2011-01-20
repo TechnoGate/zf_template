@@ -12,7 +12,9 @@ class Helper_Database extends Zend_Controller_Action_Helper_Abstract {
 
     public function preDispatch() {
 
-      $dbAdapter = \ActiveRecord\Connection::instance();
+      $registry = Zend_Registry::getInstance();
+      $doctrine = $registry->get('doctrine');
+      $dbAdapter = $doctrine['manager'];
       $this->getActionController()->setDbAdapter($dbAdapter);
     }
 }

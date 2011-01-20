@@ -46,6 +46,7 @@ class ZendX_Doctrine_Application_Resource_Doctrine extends Zend_Application_Reso
     }
 
     $registryData = array(
+      'manager'   => $this->_manager,
       'paths'     => $this->_paths,
       'profilers' => $this->_profilers,
     );

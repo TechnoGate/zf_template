@@ -1,9 +1,6 @@
 [submodule "library/Zend"]
 	path = library/Zend
 	url = git://github.com/tjohns/zf.git
-[submodule "library/php-activerecord"]
-	path = library/php-activerecord
-	url = git://github.com/kla/php-activerecord.git
 [submodule "devel_tools/git/hooks"]
 	path = devel_tools/git/hooks
 	url = git://github.com/TechnoGate/git_hooks.git

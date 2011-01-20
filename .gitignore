@@ -27,10 +27,7 @@ application/configs/application.ini-branch-*
 public/uploads/*
 
 # Ignore generated captcha files
-public/img/captcha/*
-
-# Ignore generated stats files
-public/img/stats/*
+public/img/g/*
 
 # logs
 mail.log

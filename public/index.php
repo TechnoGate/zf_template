@@ -34,12 +34,6 @@ if (PHP_VERSION_ID < 50207) {
   define('PHP_RELEASE_VERSION', $version[2]);
 }
 
-// Check requirement.
-if (! file_exists(realpath(dirname(__FILE__) . '/.htaccess')))
-  die("You should copy public/.htaccess.sample to public/.htaccess");
-if (! file_exists(realpath(dirname(__FILE__) . '/../application/configs/application.ini')))
-  die("You should copy application/configs/application.ini.sample to application/configs/application.ini");
-
 // Define path to root directory
 if (! defined('ROOT_PATH'))
   define('ROOT_PATH', realpath(dirname(__FILE__) . '/..'));
@@ -56,6 +50,18 @@ if (! defined('PUBLIC_PATH'))
 if (! defined('APPLICATION_ENV'))
   define('APPLICATION_ENV', (getenv('APPLICATION_ENV') ? getenv('APPLICATION_ENV') : 'production'));
 
+if(! defined('WRITABLE_FOLDERS'))
+  define('WRITABLE_FOLDERS', implode(':', array(
+    ROOT_PATH . '/.zfcache',
+    PUBLIC_PATH . '/img/g/',
+    PUBLIC_PATH . '/uploads',
+  )));
+
+if(! defined('WRITABLE_FILES'))
+  define('WRITABLE_FILES', implode(':', array(
+    ROOT_PATH . '/temp/logs/mail.log',
+  )));
+
 // Set include path
 set_include_path(APPLICATION_PATH
   . PATH_SEPARATOR . realpath(ROOT_PATH . '/library')
@@ -65,6 +71,22 @@ set_include_path(APPLICATION_PATH
   . PATH_SEPARATOR . realpath(APPLICATION_PATH . '/models/Exceptions')
   . PATH_SEPARATOR . realpath(APPLICATION_PATH . '/forms/')
   . PATH_SEPARATOR . get_include_path());
+
+// Check requirement.
+if(PHP_MAJOR_VERSION < 5 || (PHP_MAJOR_VERSION >= 5 && PHP_MINOR_VERSION < 3))
+  die("You are running PHP Version " . PHP_VERSION . ", however this application require PHP 5.3 and above");
+if (! file_exists(PUBLIC_PATH . '/.htaccess'))
+  die("You should copy public/.htaccess.sample to public/.htaccess");
+if (! file_exists(APPLICATION_PATH . '/configs/application.ini'))
+  die("You should copy application/configs/application.ini.sample to application/configs/application.ini");
+foreach(explode(':', WRITABLE_FOLDERS) as $folder) {
+  if (! (is_dir($folder) && is_writable($folder)))
+    die("The folder ${folder} is not writable or does not exist.");
+}
+foreach(explode(':', WRITABLE_FILES) as $file) {
+  if (! (is_file($file) && is_writable($file)))
+    die("The file ${file} is not writable or does not exist.");
+}
 
 /** Common Function */
 require_once 'Technogate/Common.php';

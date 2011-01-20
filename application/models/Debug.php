@@ -1,13 +1,8 @@
 <?php
 
-class Debug extends ActiveRecord\Model {
+class Debug extends Base_Debug {
 
   const TYPE_ERROR = 'ERROR';
-
-  // Validations
-  static $validates_presence_of = array(
-    array('type'),
-  );
 
   public static function traceException(Exception $exception) {
 

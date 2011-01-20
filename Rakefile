@@ -11,7 +11,7 @@ require 'rake'
 
 # Migrations
 begin
-	require 'active_record'
+  require 'active_record'
   require 'tasks/standalone_migrations'
   MigratorTasks.new do |t|
     t.migrations = "db/migrations"
@@ -35,6 +35,10 @@ begin
   task :prepare_config do
     puts "Preparing the config file from application.ini"
 
+    adapter_mapping = {
+      'pgsql' => 'postgresql'
+    }
+
     application_ini = File.expand_path(File.dirname(__FILE__)+'/application/configs/application.ini')
     raise "application.ini cannot be found please copy it from application.ini.sample" unless File.exist? application_ini
 
@@ -43,14 +47,20 @@ begin
 
     db_config = Hash.new
     ['production', 'development'].each do |env|
-      break unless config_ini.params.include? env
-      db_config[env] = {
-        'adapter'  => config_ini.params[env]["resources.activerecord.connections.#{env}.dsn.adapter"],
-        'hostname' => config_ini.params[env]["resources.activerecord.connections.#{env}.dsn.hostspec"],
-        'username' => config_ini.params[env]["resources.activerecord.connections.#{env}.dsn.user"],
-        'password' => config_ini.params[env]["resources.activerecord.connections.#{env}.dsn.pass"],
-        'database' => config_ini.params[env]["resources.activerecord.connections.#{env}.dsn.database"],
-      }
+      if config_ini.params.include? env
+        adapter = config_ini.params[env]["resources.activerecord.connections.#{env}.dsn.adapter"]
+        if adapter_mapping.has_key? adapter
+          adapter = adapter_mapping[adapter]
+        end
+        db_config[env] = {
+          'adapter'  => adapter,
+          'hostname' => config_ini.params[env]["resources.activerecord.connections.#{env}.dsn.hostspec"],
+          'port'		 => config_ini.params[env]["resources.activerecord.connections.#{env}.dsn.port"].to_i,
+          'username' => config_ini.params[env]["resources.activerecord.connections.#{env}.dsn.user"],
+          'password' => config_ini.params[env]["resources.activerecord.connections.#{env}.dsn.pass"],
+          'database' => config_ini.params[env]["resources.activerecord.connections.#{env}.dsn.database"],
+        }
+      end
     end
 
     config_yml.write(YAML::dump(db_config))

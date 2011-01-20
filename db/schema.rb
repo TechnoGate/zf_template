@@ -51,7 +51,7 @@ ActiveRecord::Schema.define(:version => 20110120142651) do
     t.string   "action"
     t.integer  "used"
     t.boolean  "auto_delete"
-    t.integer  "status",      :limit => 1
+    t.integer  "status",      :limit => 2
     t.datetime "created_at"
     t.datetime "updated_at"
   end

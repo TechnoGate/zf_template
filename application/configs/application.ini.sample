@@ -1,10 +1,9 @@
 [production]
 phpSettings.display_startup_errors = 0
 phpSettings.display_errors = 0
-resources.frontController.throwerrors = 0
+
 includePaths.library = ROOT_PATH "/library"
-resources.modulesetup[] =
-resources.modules[] =
+
 bootstrap.path = APPLICATION_PATH "/Bootstrap.php"
 bootstrap.class = "Bootstrap"
 
@@ -15,23 +14,30 @@ pluginPaths.Technogate_Application_Resource = "Technogate/Application/Resource"
 pluginPaths.ZendX_Activerecord_Application_Resource= "ZendX/Activerecord/Application/Resource"
 pluginPaths.Technogate_Application_Resource = "Technogate/Application/Resource"
 
+resources.modulesetup[] =
+resources.modules[] =
+
+resources.frontController.throwerrors = 0
+
 resources.frontController.controllerdirectory = APPLICATION_PATH "/controllers"
 resources.frontController.params.prefixDefaultModule = false
 resources.frontController.moduledirectory = APPLICATION_PATH "/modules"
 resources.frontController.defaultModule = "default"
 resources.frontController.plugins.moduleloader = Technogate_Controller_Plugin_ModuleLoader
 resources.frontController.plugins.layoutloader = Technogate_Controller_Plugin_RequestedModuleLayoutLoader
+
 resources.layout.layout = "layout"
 resources.layout.layoutpath = APPLICATION_PATH "/modules/default/layouts"
+
 resources.translate.adapter = gettext
 resources.translate.data = ROOT_PATH "/data/locales"
 resources.translate.options.scan = directory
-resources.translate.locale = en_US
+resources.translate.locale = en
 
 resources.activerecord.connections.production.dsn.adapter = mysql
 resources.activerecord.connections.production.dsn.user =
 resources.activerecord.connections.production.dsn.pass =
-resources.activerecord.connections.production.dsn.hostspec =
+resources.activerecord.connections.production.dsn.hostspec = localhost
 resources.activerecord.connections.production.dsn.database =
 resources.activerecord.connections.production.dsn.options.charset = utf8
 resources.activerecord.default_connection = production
@@ -52,7 +58,7 @@ app.title = Template
 app.logo = img/logo.png
 app.facebook.apikey =
 
-app.models.mail.smtp.0.host =
+app.models.mail.smtp.0.host = localhost
 app.models.mail.smtp.0.params.auth = login
 app.models.mail.smtp.0.params.username =
 app.models.mail.smtp.0.params.password =
@@ -60,10 +66,10 @@ app.models.mail.smtp.0.params.ssl =
 app.models.mail.smtp.0.params.port =
 app.models.mail.from.name = Template
 app.models.mail.from.email = template@example.com
+app.models.mail.bcc.email = template@example.com
 app.models.mail.charset = utf-8
 
-app.models.security.secret_token = 75cb1215af9981a9dabf3ff8861cf7919d6350e56d25f4db21bbb5776af3f872887431a7acfd2984cc453d98c81e5d374bea40e5df90d8b0c8ef9b930d3da721
-
+app.models.security.secret_token = c5a15206e7983bb53900944e695e250eeca7d77bd38e235fad596b066b3d53021f313e38d62c4a4229678c127ff32fe346ebfa8010e98ddcea42a82e97cb5151
 
 [production-scripts : production]
 
@@ -73,5 +79,21 @@ phpSettings.display_errors = 1
 resources.frontController.throwerrors = 1
 
 [testing : staging]
+resources.activerecord.connections.testing.dsn.adapter = mysql
+resources.activerecord.connections.testing.dsn.user =
+resources.activerecord.connections.testing.dsn.pass =
+resources.activerecord.connections.testing.dsn.hostspec = localhost
+resources.activerecord.connections.testing.dsn.database =
+resources.activerecord.connections.testing.dsn.options.charset = utf8
+resources.activerecord.default_connection = testing
+resources.activerecord.model_directory = APPLICATION_PATH "/models"
 
 [development : testing]
+resources.activerecord.connections.development.dsn.adapter = mysql
+resources.activerecord.connections.development.dsn.user =
+resources.activerecord.connections.development.dsn.pass =
+resources.activerecord.connections.development.dsn.hostspec = localhost
+resources.activerecord.connections.development.dsn.database =
+resources.activerecord.connections.development.dsn.options.charset = utf8
+resources.activerecord.default_connection = development
+resources.activerecord.model_directory = APPLICATION_PATH "/models"

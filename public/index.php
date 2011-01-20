@@ -35,8 +35,6 @@ if (PHP_VERSION_ID < 50207) {
 }
 
 // Check requirement.
-if(PHP_MAJOR_VERSION < 5 || (PHP_MAJOR_VERSION >= 5 && PHP_MINOR_VERSION < 3))
-  die("You are running PHP Version " . PHP_VERSION . ", however this application require PHP 5.3 and above");
 if (! file_exists(realpath(dirname(__FILE__) . '/.htaccess')))
   die("You should copy public/.htaccess.sample to public/.htaccess");
 if (! file_exists(realpath(dirname(__FILE__) . '/../application/configs/application.ini')))

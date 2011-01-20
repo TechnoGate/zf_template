@@ -73,8 +73,8 @@ set_include_path(APPLICATION_PATH
   . PATH_SEPARATOR . get_include_path());
 
 // Check requirement.
-if(PHP_MAJOR_VERSION < 5 || (PHP_MAJOR_VERSION >= 5 && PHP_MINOR_VERSION < 3))
-  die("You are running PHP Version " . PHP_VERSION . ", however this application require PHP 5.3 and above");
+if(PHP_VERSION_ID < 50203)
+  die("You are running PHP Version " . PHP_VERSION . ", however this application require PHP 5.2.3 and above");
 if (! file_exists(PUBLIC_PATH . '/.htaccess'))
   die("You should copy public/.htaccess.sample to public/.htaccess");
 if (! file_exists(APPLICATION_PATH . '/configs/application.ini'))

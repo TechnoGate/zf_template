@@ -55,8 +55,12 @@ class UsersController extends Technogate_Controller_Action {
           /** Forward to the activation-link-sent action and make sure the execution endes here */
           return $this->_forward('activation-link-sent', 'users', null, array("email" => $email));
         } else {
+          // Errors thrown by the Model
           $this->view->errors = $user->errors->to_array();
         }
+      } else {
+        // Errors thrown by Zend_Form
+        $this->view->errors = $form->getMessages();
       }
 
       /** Valid or not, populate the data */
@@ -103,6 +107,9 @@ class UsersController extends Technogate_Controller_Action {
         } catch(Technogate_Exceptions_UserServiceException $e) {
           $this->view->message = $e->getMessage();
         }
+      } else {
+        // Errors thrown by Zend_Form
+        $this->view->errors = $form->getMessages();
       }
 
       /** Valid or not, populate the data */

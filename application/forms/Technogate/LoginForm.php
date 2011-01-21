@@ -47,8 +47,19 @@ class Technogate_LoginForm extends Technogate_Form {
     $submit = new Zend_Form_Element_Submit('submit');
     $submit->setAttrib('id', 'submitbutton');
 
+    // Set the elements in display order
+    $elements = array(
+      $login,
+      $password,
+      $submit
+    );
+
+    // Remove the errors decorator, I actually handle this myself
+    foreach($elements as $element)
+      $element->removeDecorator('Errors');
+
     // Finally Add the elements to the view.
-    $this->addElements(array ($login, $password, $submit ));
+    $this->addElements($elements);
   }
 }
 

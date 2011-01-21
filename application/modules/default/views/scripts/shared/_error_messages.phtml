@@ -6,7 +6,7 @@
   <ul>
   <? foreach($this->errors as $field => $messages) { ?>
     <? foreach($messages as $message) { ?>
-      <li><?= $message ?></li>
+      <li><?= $field?>: <?= $message ?></li>
     <? } ?>
 
     <script type="text/javascript">

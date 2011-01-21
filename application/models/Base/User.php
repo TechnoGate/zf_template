@@ -29,6 +29,9 @@ class Base_User extends ActiveRecord\Model {
     array('login'),
     array('email'),
   );
+  static $validates_format_of = array(
+    array('email', 'with' => '/^[^0-9][A-z0-9_]+([.][A-z0-9_]+)*[@][A-z0-9_]+([.][A-z0-9_]+)*[.][A-z]{2,4}$/')
+  );
   public function validate() {
 
     if(!empty($this->_password) && $this->_password != $this->_password_confirmation)

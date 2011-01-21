@@ -2,12 +2,6 @@
 
 class Log extends Base_Log {
 
-  const ANALYTICS_TYPE_INFO = 'INFO';
-  const ANALYTICS_NAME_SEARCH = 'SEARCH';
-  const ANALYTICS_NAME_FEED = 'FEED';
-  const ANALYTICS_NAME_CHANGEIDENTITY = 'CHANGE_IDENTITY';
-
-
   public static function logEvent($name, $p1='', $p2='', $p3='', $p4='') {
 
     $userId = Session::getLoggedInUserId();

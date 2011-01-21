@@ -19,6 +19,11 @@
  */
 class Base_Token extends Doctrine_Record {
 
+  /** Statuses */
+  const ACTIVE = 2;
+  const DISABLED = 5;
+  const DELETED = 9;
+
   // Definition
   public function setTableDefinition() {
 

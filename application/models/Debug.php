@@ -2,8 +2,6 @@
 
 class Debug extends Base_Debug {
 
-  const TYPE_ERROR = 'ERROR';
-
   public static function traceException(Exception $exception) {
 
     $trace = new Debug();

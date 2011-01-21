@@ -83,8 +83,23 @@ class Technogate_CreateUserForm extends Technogate_Form {
     $submit = new Zend_Form_Element_Submit('submit');
     $submit->setAttrib('id', 'submitbutton');
 
+    // Set the elements in display order
+    $elements = array (
+      $name,
+      $login,
+      $password,
+      $password_confirmation,
+      $email,
+      $captcha,
+      $submit
+    );
+
+    // Remove the errors decorator, I actually handle this myself
+    foreach($elements as $element)
+      $element->removeDecorator('Errors');
+
     // Finally Add the elements to the view.
-    $this->addElements(array ($name, $login, $password, $password_confirmation, $email, $captcha, $submit ));
+    $this->addElements($elements);
   }
 }
 

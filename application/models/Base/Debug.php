@@ -14,6 +14,9 @@
  */
 abstract class Base_Debug extends Doctrine_Record {
 
+  const TYPE_ERROR = 'ERROR';
+
+  // Definition
   public function setTableDefinition() {
 
     $this->setTableName('debugs');

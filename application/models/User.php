@@ -2,18 +2,6 @@
 
 class User extends Base_User {
 
-  const WAITACTIVATION = "WAITACTIVATION";
-
-  const COMPLETED = "COMPLETED";
-
-  const USER_MIN_LENGTH = 4;
-
-  const USER_MAX_LENGTH = 20;
-
-  const PASS_MIN_LENGTH = 6;
-
-  const PASS_MAX_LENGTH = 20;
-
   /**
    * This function manages account validation (by email)
    *

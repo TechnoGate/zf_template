@@ -21,6 +21,11 @@
  */
 abstract class Base_Log extends Doctrine_Record {
 
+  const ANALYTICS_TYPE_INFO = 'INFO';
+  const ANALYTICS_NAME_SEARCH = 'SEARCH';
+  const ANALYTICS_NAME_FEED = 'FEED';
+  const ANALYTICS_NAME_CHANGEIDENTITY = 'CHANGE_IDENTITY';
+
   // Definition
   public function setTableDefinition() {
 

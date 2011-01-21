@@ -2,6 +2,11 @@
 
 class Base_Token extends ActiveRecord\Model {
 
+  /** Statuses */
+  const ACTIVE = 2;
+  const DISABLED = 5;
+  const DELETED = 9;
+
   // Validations
   static $validates_presence_of = array(
     array('action'),

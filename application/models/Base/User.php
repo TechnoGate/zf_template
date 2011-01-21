@@ -2,6 +2,19 @@
 
 class Base_User extends ActiveRecord\Model {
 
+  const WAITACTIVATION = "WAITACTIVATION";
+
+  const COMPLETED = "COMPLETED";
+
+  const USER_MIN_LENGTH = 4;
+
+  const USER_MAX_LENGTH = 20;
+
+  const PASS_MIN_LENGTH = 6;
+
+  const PASS_MAX_LENGTH = 20;
+
+
   // Accesstible Attributes
   static $attr_accessible = array(
     'login',
